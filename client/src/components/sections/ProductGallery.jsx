@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import toast, { Toaster } from 'react-hot-toast';
 import ProductCard from '../common/ProductCard';
 import { products, categories } from '../../data/products';
 import './ProductGallery.css';
@@ -19,12 +20,20 @@ const ProductGallery = () => {
   };
 
   const handleWishlist = (productId) => {
-    console.log('Added to wishlist:', productId);
-    // Toast notification would go here
+    toast.success('Added to wishlist! ♡', {
+      duration: 2000,
+      style: {
+        background: 'var(--color-rose-gold)',
+        color: 'white',
+        fontWeight: '500'
+      }
+    });
   };
 
   return (
-    <section className="product-gallery section" id="products">
+    <>
+      <Toaster position="top-center" />
+      <section className="product-gallery section" id="products">
       <div className="container">
         <motion.div
           className="section-header text-center"
@@ -171,8 +180,35 @@ const ProductGallery = () => {
                   )}
 
                   <div className="modal-actions">
-                    <button className="btn btn-primary">Add to Cart</button>
-                    <button className="btn-icon" onClick={() => handleWishlist(selectedProduct.id)}>
+                    <button 
+                      className="btn btn-primary"
+                      onClick={() => {
+                        setShowQuickView(false);
+                        toast.success(`Added ${selectedProduct.name} to cart! 🛍️`, {
+                          duration: 3000,
+                          style: {
+                            background: 'var(--color-rose-gold)',
+                            color: 'white',
+                            fontWeight: '500'
+                          }
+                        });
+                      }}
+                    >
+                      Add to Cart
+                    </button>
+                    <button 
+                      className="btn-icon" 
+                      onClick={() => {
+                        handleWishlist(selectedProduct.id);
+                        toast.success('Added to wishlist! ♡', {
+                          duration: 2000,
+                          style: {
+                            background: 'var(--color-rose-gold)',
+                            color: 'white'
+                          }
+                        });
+                      }}
+                    >
                       ♡
                     </button>
                   </div>
@@ -182,7 +218,7 @@ const ProductGallery = () => {
           </motion.div>
         )}
       </AnimatePresence>
-    </section>
+    </>
   );
 };
 

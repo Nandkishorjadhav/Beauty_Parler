@@ -59,6 +59,13 @@ const FeaturedCollections = () => {
                   <div className="collection-overlay">
                     <motion.button
                       className="collection-btn"
+                      onClick={() => {
+                        // Scroll to products section and filter by collection
+                        const productsSection = document.getElementById('products');
+                        if (productsSection) {
+                          productsSection.scrollIntoView({ behavior: 'smooth' });
+                        }
+                      }}
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
                     >

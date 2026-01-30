@@ -85,6 +85,13 @@ const BrandStory = () => {
 
             <motion.button
               className="btn btn-primary story-cta"
+              onClick={() => {
+                // Open about modal or scroll to contact
+                const contactSection = document.getElementById('newsletter');
+                if (contactSection) {
+                  contactSection.scrollIntoView({ behavior: 'smooth' });
+                }
+              }}
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
