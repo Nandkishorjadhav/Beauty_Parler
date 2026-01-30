@@ -130,11 +130,12 @@
 
 /* Mobile Menu */
 .mobile-menu {
-  display: none;
+  display: flex;
   flex-direction: column;
   padding: 1rem 2rem 2rem;
   background: white;
   border-top: 1px solid var(--color-pearl);
+  overflow: hidden;
 }
 
 .mobile-nav-link {
@@ -146,11 +147,13 @@
   letter-spacing: 1px;
   font-size: 0.95rem;
   border-bottom: 1px solid var(--color-pearl);
-  transition: color 0.3s ease;
+  transition: all 0.3s ease;
+  cursor: pointer;
 }
 
 .mobile-nav-link:hover {
   color: var(--color-rose-gold);
+  padding-left: 10px;
 }
 
 /* Responsive */
@@ -160,10 +163,6 @@
   }
   
   .mobile-menu-toggle {
-    display: flex;
-  }
-  
-  .mobile-menu {
     display: flex;
   }
 }
