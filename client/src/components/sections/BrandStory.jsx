@@ -4,24 +4,24 @@ import './BrandStory.css';
 const BrandStory = () => {
   const values = [
     {
-      icon: '🌿',
-      title: 'Clean Beauty',
-      description: 'Science-backed formulations with pure, effective ingredients'
-    },
-    {
-      icon: '♻️',
-      title: 'Sustainable',
-      description: 'Earth-conscious packaging and carbon-neutral shipping'
-    },
-    {
-      icon: '🐰',
-      title: 'Cruelty-Free',
-      description: "We've never tested on animals. PETA certified"
+      icon: '💇',
+      title: 'Expert Stylists',
+      description: 'Certified professionals with years of experience'
     },
     {
       icon: '✨',
-      title: 'Inclusive Beauty',
-      description: 'For all skin tones, types, and ages'
+      title: 'Premium Products',
+      description: 'Only the finest international brands and products'
+    },
+    {
+      icon: '🧼',
+      title: 'Hygienic Standards',
+      description: 'Sanitized tools and clean environment guaranteed'
+    },
+    {
+      icon: '💎',
+      title: 'Personalized Care',
+      description: 'Customized services for your unique beauty needs'
     }
   ];
 
@@ -54,15 +54,15 @@ const BrandStory = () => {
           >
             <h2 className="story-title">Our Story</h2>
             <p className="story-text">
-              Founded in 2020, Lumière was born from a simple belief: beauty should be a ritual, not a routine. We believe that every ingredient tells a story, and every product is a promise.
+              Founded in 2020, Lumière Beauty Salon was born from a passion for enhancing natural beauty and empowering confidence. We believe that every visit should be a transformative experience, not just an appointment.
             </p>
             <p className="story-text">
-              Our journey began in a small laboratory in California, where we combined cutting-edge science with the finest botanical ingredients. Today, we're proud to offer luxury beauty products that are as kind to your skin as they are to the planet.
+              Our journey began with a vision to create a sanctuary where expertise meets luxury. With our team of certified professionals and commitment to using premium products, we've become a trusted destination for those seeking exceptional beauty services in a welcoming, hygienic environment.
             </p>
 
             <blockquote className="story-quote">
-              "Every ingredient tells a story. Every product is a promise."
-              <cite>— Isabella Chen, Founder & CEO</cite>
+              "Your beauty, our expertise. Every service is a promise of excellence."
+              <cite>— Isabella Chen, Founder & Master Stylist</cite>
             </blockquote>
 
             <div className="values-grid">
@@ -95,7 +95,7 @@ const BrandStory = () => {
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
-              Learn More About Our Mission
+              Book Your Appointment Today
             </motion.button>
           </motion.div>
         </div>

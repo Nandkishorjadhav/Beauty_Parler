@@ -32,9 +32,9 @@ const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.7, duration: 0.8 }}
           >
-            Where Science
+            Where Beauty
             <br />
-            <span className="hero-title-accent">Meets Beauty</span>
+            <span className="hero-title-accent">Meets Expertise</span>
           </motion.h1>
 
           <motion.p
@@ -43,9 +43,9 @@ const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.9, duration: 0.8 }}
           >
-            Discover luxury skincare and beauty products crafted with
+            Experience comprehensive grooming services including hair styling,
             <br />
-            clean, science-backed ingredients for radiant skin.
+            skin care treatments, waxing, and bridal makeup.
           </motion.p>
 
           <motion.div
@@ -54,11 +54,11 @@ const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.1, duration: 0.8 }}
           >
-            <Button variant="primary" onClick={() => document.getElementById('products')?.scrollIntoView({ behavior: 'smooth' })}>
-              Shop Collection
+            <Button variant="primary" onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })}>
+              View Services
             </Button>
-            <Button variant="secondary" onClick={() => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })}>
-              Discover More
+            <Button variant="secondary" onClick={() => document.getElementById('newsletter')?.scrollIntoView({ behavior: 'smooth' })}>
+              Book Appointment
             </Button>
           </motion.div>
         </motion.div>

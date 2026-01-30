@@ -3,7 +3,7 @@ import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
 import Hero from './components/sections/Hero';
 import FeaturedCollections from './components/sections/FeaturedCollections';
-import ProductGallery from './components/sections/ProductGallery';
+import ServicesGallery from './components/sections/ServicesGallery';
 import BrandStory from './components/sections/BrandStory';
 import Testimonials from './components/sections/Testimonials';
 import Newsletter from './components/sections/Newsletter';
@@ -21,7 +21,7 @@ function App() {
       <main>
         <Hero />
         <FeaturedCollections />
-        <ProductGallery />
+        <ServicesGallery />
         <BrandStory />
         <Testimonials />
         <Newsletter />

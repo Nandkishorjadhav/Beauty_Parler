@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
-import { collections } from '../../data/collections';
+import { serviceCategories } from '../../data/serviceCategories';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
@@ -18,9 +18,9 @@ const FeaturedCollections = () => {
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="section-title">Curated Collections</h2>
+          <h2 className="section-title">Our Service Categories</h2>
           <p className="section-subtitle">
-            Discover our hand-picked selections designed to transform your beauty ritual
+            Explore our comprehensive range of professional beauty services
           </p>
         </motion.div>
 
@@ -38,7 +38,7 @@ const FeaturedCollections = () => {
           }}
           className="collections-swiper"
         >
-          {collections.map((collection, index) => (
+          {serviceCategories.map((collection, index) => (
             <SwiperSlide key={collection.id}>
               <motion.div
                 className="collection-card"
@@ -60,16 +60,16 @@ const FeaturedCollections = () => {
                     <motion.button
                       className="collection-btn"
                       onClick={() => {
-                        // Scroll to products section and filter by collection
-                        const productsSection = document.getElementById('products');
-                        if (productsSection) {
-                          productsSection.scrollIntoView({ behavior: 'smooth' });
+                        // Scroll to services section
+                        const servicesSection = document.getElementById('services');
+                        if (servicesSection) {
+                          servicesSection.scrollIntoView({ behavior: 'smooth' });
                         }
                       }}
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
                     >
-                      Explore Collection
+                      View Services
                     </motion.button>
                   </div>
                 </div>
