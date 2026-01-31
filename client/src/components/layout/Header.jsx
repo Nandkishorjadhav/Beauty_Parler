@@ -17,12 +17,36 @@ const Header = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+
+  const serviceLinks = [
+    { name: 'Hair Care', href: '#hair-care' },
+    { name: 'Skin Care', href: '#skin-care' },
+    { name: 'Waxing', href: '#waxing' },
+    { name: 'Bridal Makeup', href: '#bridal-makeup' },
+    { name: 'Party Makeup', href: '#party-makeup' }
+  ];
+
   const navItems = [
-    { name: 'Services', href: '#services' },
+    { name: 'Services', href: '#services', dropdown: serviceLinks },
     { name: 'Collections', href: '#collections' },
     { name: 'About', href: '#about' },
     { name: 'Contact', href: '#contact' }
   ];
+
+  // Dropdown state for mobile
+  const [servicesDropdownOpen, setServicesDropdownOpen] = useState(false);
+
+  // Close mobile menu on resize to desktop
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth > 968) {
+        setMobileMenuOpen(false);
+        setServicesDropdownOpen(false);
+      }
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   return (
     <>
@@ -51,17 +75,30 @@ const Header = () => {
           {/* Desktop Navigation */}
           <nav className="nav-desktop">
             {navItems.map((item, index) => (
-              <motion.a
-                key={item.name}
-                href={item.href}
-                className="nav-link"
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1, duration: 0.5 }}
-                whileHover={{ y: -2 }}
-              >
-                {item.name}
-              </motion.a>
+              item.dropdown ? (
+                <div className="nav-link nav-dropdown" key={item.name} tabIndex={0}>
+                  {item.name}
+                  <div className="dropdown-content">
+                    {item.dropdown.map((sub, i) => (
+                      <a key={sub.name} href={sub.href} className="dropdown-link">
+                        {sub.name}
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              ) : (
+                <motion.a
+                  key={item.name}
+                  href={item.href}
+                  className="nav-link"
+                  initial={{ opacity: 0, y: -20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.1, duration: 0.5 }}
+                  whileHover={{ y: -2 }}
+                >
+                  {item.name}
+                </motion.a>
+              )
             ))}
           </nav>
 
@@ -124,9 +161,10 @@ const Header = () => {
 
             {/* Mobile Menu Toggle */}
             <button
-              className="mobile-menu-toggle"
+              className={`mobile-menu-toggle ${mobileMenuOpen ? 'active' : ''}`}
               onClick={() => setMobileMenuOpen(prev => !prev)}
               aria-label="Menu"
+              aria-expanded={mobileMenuOpen}
             >
               <span />
               <span />
@@ -138,7 +176,7 @@ const Header = () => {
         {/* Mobile Menu */}
         <AnimatePresence>
           {mobileMenuOpen && (
-            <motion.div
+            <motion.nav
               className="mobile-menu"
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: 'auto' }}
@@ -146,16 +184,57 @@ const Header = () => {
               transition={{ duration: 0.3 }}
             >
               {navItems.map(item => (
-                <a
-                  key={item.name}
-                  href={item.href}
-                  className="mobile-nav-link"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  {item.name}
-                </a>
+                item.dropdown ? (
+                  <div key={item.name} className="mobile-nav-link mobile-dropdown">
+                    <button
+                      className="mobile-dropdown-btn"
+                      onClick={() => setServicesDropdownOpen(open => !open)}
+                      aria-expanded={servicesDropdownOpen}
+                    >
+                      {item.name}
+                    </button>
+                    {servicesDropdownOpen && (
+                      <div className="mobile-dropdown-content">
+                        {item.dropdown.map(sub => (
+                          <a
+                            key={sub.name}
+                            href={sub.href}
+                            className="mobile-dropdown-link"
+                            onClick={e => {
+                              setMobileMenuOpen(false);
+                              setServicesDropdownOpen(false);
+                              // Smooth scroll
+                              if (sub.href.startsWith('#')) {
+                                const el = document.querySelector(sub.href);
+                                if (el) el.scrollIntoView({ behavior: 'smooth' });
+                              }
+                            }}
+                          >
+                            {sub.name}
+                          </a>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                ) : (
+                  <a
+                    key={item.name}
+                    href={item.href}
+                    className="mobile-nav-link"
+                    onClick={e => {
+                      setMobileMenuOpen(false);
+                      // Smooth scroll
+                      if (item.href.startsWith('#')) {
+                        const el = document.querySelector(item.href);
+                        if (el) el.scrollIntoView({ behavior: 'smooth' });
+                      }
+                    }}
+                  >
+                    {item.name}
+                  </a>
+                )
               ))}
-            </motion.div>
+            </motion.nav>
           )}
         </AnimatePresence>
       </motion.header>
